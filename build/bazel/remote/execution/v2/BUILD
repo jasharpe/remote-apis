@@ -1,5 +1,7 @@
 package(default_visibility = ["//visibility:public"])
 load("@com_github_grpc_grpc//bazel:cc_grpc_library.bzl", "cc_grpc_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 licenses(["notice"])
 
@@ -30,10 +32,30 @@ cc_grpc_library(
         "@googleapis//:google_api_annotations_cc_proto",
         "@googleapis//:google_api_http_cc_proto",
         "@googleapis//:google_longrunning_operations_cc_proto",
-        "@googleapis//:google_rpc_status_cc_proto",
+        "@googleapis//gg:google_rpc_status_cc_proto",
     ],
     proto_only = False,
     well_known_protos = True,
     use_external = False,
 )
 
+go_proto_library(
+    name = "remote_execution_go_proto",
+    compilers = ["@io_bazel_rules_go//proto:go_grpc"],
+    importpath = "github.com/jasharpe/remote-apis/build/bazel/remote/execution/v2",
+    # Note: gazelle wants to generate a :remoteexecution_proto target because
+    # the go_package is "remoteexecution", so this rule was written manually.
+    proto = ":remote_execution_proto",
+    deps = [
+        "//build/bazel/semver:go_default_library",
+        "@go_googleapis//google/api:annotations_go_proto",
+        "@go_googleapis//google/longrunning:longrunning_go_proto",
+        "@go_googleapis//google/rpc:status_go_proto",
+    ],
+)
+
+go_library(
+    name = "go_default_library",
+    embed = [":remote_execution_go_proto"],
+    importpath = "github.com/jasharpe/remote-apis/build/bazel/remote/execution/v2",
+)
