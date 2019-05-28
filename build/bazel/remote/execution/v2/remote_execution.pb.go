@@ -6,10 +6,10 @@ package remoteexecution
 import (
 	context "context"
 	fmt "fmt"
-	semver "github.com/bazelbuild/remote-apis/build/bazel/semver"
 	proto "github.com/golang/protobuf/proto"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	semver "github.com/jasharpe/remote-apis/build/bazel/semver"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	longrunning "google.golang.org/genproto/googleapis/longrunning"
 	status "google.golang.org/genproto/googleapis/rpc/status"

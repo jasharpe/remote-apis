@@ -40,7 +40,7 @@ cc_grpc_library(
 go_proto_library(
     name = "remote_execution_go_proto",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-    importpath = "github.com/bazelbuild/remote-apis/build/bazel/remote/execution/v2",
+    importpath = "github.com/jasharpe/remote-apis/build/bazel/remote/execution/v2",
     proto = ":remote_execution_proto",
     deps = [
         "//build/bazel/semver:go_default_library",
@@ -53,5 +53,5 @@ go_proto_library(
 go_library(
     name = "go_default_library",
     embed = [":remote_execution_go_proto"],
-    importpath = "github.com/bazelbuild/remote-apis/build/bazel/remote/execution/v2",
+    importpath = "github.com/jasharpe/remote-apis/build/bazel/remote/execution/v2",
 )

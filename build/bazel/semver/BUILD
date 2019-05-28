@@ -24,12 +24,12 @@ cc_grpc_library(
 
 go_proto_library(
     name = "semver_go_proto",
-    importpath = "github.com/bazelbuild/remote-apis/build/bazel/semver",
+    importpath = "github.com/jasharpe/remote-apis/build/bazel/semver",
     proto = ":semver_proto",
 )
 
 go_library(
     name = "go_default_library",
     embed = [":semver_go_proto"],
-    importpath = "github.com/bazelbuild/remote-apis/build/bazel/semver",
+    importpath = "github.com/jasharpe/remote-apis/build/bazel/semver",
 )

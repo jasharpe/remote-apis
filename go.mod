@@ -1,4 +1,4 @@
-module github.com/bazelbuild/remote-apis
+module github.com/jasharpe/remote-apis
 
 go 1.12
 
